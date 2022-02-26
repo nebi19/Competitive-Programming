@@ -1,0 +1,33 @@
+import java.util.*;
+ 
+
+ 
+public class Solution {
+    public static void main(String[] args)  {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
+        int max=arr[0];
+        
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int[] freqency=new int[n];
+        for(int i=0;i<n;i++)
+            freqency[i]=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]>max)
+            max=arr[i];
+           ++freqency[arr[i]];   
+        }
+          
+        
+        for(int j=0;j<=max;j++){
+            
+            System.out.print(freqency[j]+" ");
+        }
+        
+        
+        
+             }
+}
