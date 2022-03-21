@@ -4,11 +4,10 @@ class Solution {
         Map<Integer,Integer>map=new HashMap<Integer,Integer>();
         int[]ans=new int[nums1.length];
         for(int i:nums2){
-            while(!stack.isEmpty()){
-                if(stack.peek()<i){
+            while(!stack.isEmpty()&&stack.peek()<i){
                     map.put(stack.peek(),i);
                     stack.pop();
-                }else break;
+                
             }
             stack.push(i);
         }
