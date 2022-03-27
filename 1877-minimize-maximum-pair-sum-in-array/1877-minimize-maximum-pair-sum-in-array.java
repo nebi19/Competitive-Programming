@@ -4,7 +4,6 @@ class Solution {
     Arrays.sort(nums);
     for (int i = 0, j = nums.length - 1; i < j;)
       ans = Math.max(ans, nums[i++] + nums[j--]);
-
     return ans;
     }
 }
