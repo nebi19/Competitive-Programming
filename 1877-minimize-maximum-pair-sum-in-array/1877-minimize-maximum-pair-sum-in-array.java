@@ -1,11 +1,12 @@
 class Solution {
     public int minPairSum(int[] nums) {
-        Arrays.sort(nums);
-        int n=nums.length;
-        int ans=0;
-        for(int i=0;i<nums.length/2;++i){
-            ans = Math.max(ans, nums[i] + nums[n-1-i]);
-        }
-        return ans;
+       int ans = 0;
+
+    Arrays.sort(nums);
+
+    for (int i = 0, j = nums.length - 1; i < j;)
+      ans = Math.max(ans, nums[i++] + nums[j--]);
+
+    return ans;
     }
 }
