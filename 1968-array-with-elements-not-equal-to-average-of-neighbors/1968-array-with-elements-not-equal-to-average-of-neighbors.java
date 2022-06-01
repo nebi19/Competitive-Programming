@@ -1,17 +1,19 @@
 class Solution {
     public int[] rearrangeArray(int[] nums) {
-Arrays.sort(nums);// Sort small to large
-int n =nums.length,m=n-1,t=0;
-int[] res = new int[n];// New space
-for (int i = 0; i <n ; i++) {
-if (i%2==1){
-res[i]=nums[m];// Store in odd numbers
-m--;// Start with the biggest
-}else{
-res[i]=nums[t];// Store in even numbers
-t++;
-}
-}
-return res;
+        boolean change=true;
+        do{
+            change=false;
+              for(int i=1;i<nums.length-1;i++){
+            float a=nums[i-1]+nums[i+1];
+            if(a/2==nums[i]){
+                int b=nums[i];
+                nums[i]=nums[i+1];
+                nums[i+1]=b;
+                change=true;
+            }
+        }
+        }while(change);
+      
+        return nums;
     }
 }
