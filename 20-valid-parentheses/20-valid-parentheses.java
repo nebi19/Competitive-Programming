@@ -1,34 +1,23 @@
 class Solution {
     public boolean isValid(String s) {
-              Stack<Character> s1=new Stack<>();
-    boolean isValid=false;
-    if(s.length()==0)return false;
-    for(Character i: s.toCharArray()){
-        System.out.println("for in isValicParanthesis : " +i);
-        if(i==']'||i==')'||i=='}'){
-            if(s1.isEmpty()) return false;
-        System.out.println("type in isValicParanthesis : " +i);
-            if(s1.peek()=='['&&i==']'||s1.peek()=='('&&i==')'||s1.peek()=='{'&&i=='}'){
-        System.out.println("pop in isValicParanthesis : " +i);
+   Map<Character,Character> mappings = new HashMap<Character,Character>(){{
+            put(')', '(');
+            put('}', '{');
+            put(']', '[');
+        }};
 
-                s1.pop();
-            }else{
-        System.out.println("push typein isValicParanthesis : " +i);
-
-                s1.push(i);
+        Stack<Character> letters = new Stack<>();
+		
+        for(int i = 0; i < s.length(); i++){
+            char temp = s.charAt(i);
+            if(mappings.containsKey(temp)){
+                if(letters.isEmpty() || letters.pop() != mappings.get(temp)){
+                    return false;
+                }
+            } else{
+                letters.push(temp);
             }
-        }else{
-        System.out.println("push in isValicParanthesis : " +i);
-
-            s1.push(i);
         }
-    }
-    if(s1.isEmpty()){
-        System.out.println("Empty in isValicParanthesis : ");
-
-     return true;
-    }
-
-return isValid;
+        return letters.isEmpty();
 }
 }
