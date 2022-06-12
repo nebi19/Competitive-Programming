@@ -1,6 +1,6 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-        int [] temp=new int[nums.length];
+         int [] temp=new int[nums.length];
         int j=0;
         
         if(k==0) return;
@@ -20,8 +20,6 @@ class Solution {
             nums[j]=temp[i];
             j++;
         }
-        
-        
         
     }
 }
