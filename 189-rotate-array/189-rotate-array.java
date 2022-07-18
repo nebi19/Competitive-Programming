@@ -1,25 +1,25 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-         int [] temp=new int[nums.length];
-        int j=0;
-        
-        if(k==0) return;
-        if(k>nums.length){
-            k=k%nums.length;
+         k %= nums.length;
+        int len = nums.length;
+        reverse(nums, 0, len - 1 - k);
+        reverse(nums,len - k, nums.length - 1);
+        reverse(nums, 0, nums.length - 1);
+    }
+    
+	// Method to reverse array from start index to end index
+    public void reverse(int[] nums, int start, int end){
+        while(start < end){
+            swap(nums, start, end);
+            start++;
+            end--;
         }
-        
-        for(int i=0;i<nums.length;i++)
-            temp[i]=nums[i];
-        
-        for(int i=nums.length-k;i<nums.length;i++){
-            nums[j]=nums[i];
-            j++;
-        }
-        
-          for(int i=0;i<nums.length-k;i++){
-            nums[j]=temp[i];
-            j++;
-        }
-        
+    }
+
+// Method to swap two numbers
+    public void swap(int[] nums, int start, int end) {
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
     }
 }
