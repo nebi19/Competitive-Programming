@@ -1,23 +1,14 @@
 class Solution {
     public List<Integer> targetIndices(int[] nums, int target) {
-        // List<Integer> rs=new ArrayList<>();
-        //  Arrays.sort(nums);
-        //  List<Integer> rs=search(nums,0,nums.length-1);
-        // return rs;
-          List<Integer> list = new ArrayList<>();
-        int targetFreq = 0, lessThanTarget = 0;
-        
-        for(int num : nums){
-            if(num == target)
-                targetFreq++;
-            if(num < target)
-                lessThanTarget++;
+        List<Integer> rs=new ArrayList<>();
+        int lesThanTarget=0;
+        int targets=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==target)targets++;
+            if(nums[i]<target) lesThanTarget++;
         }
-        
-        for(int i = lessThanTarget; i < (lessThanTarget + targetFreq); i++){
-            list.add(i);
-        }
-        return list;
+        for(int i=lesThanTarget;i<(targets+lesThanTarget);i++) rs.add(i);
+        return rs;
     }
-   
+ 
 }
