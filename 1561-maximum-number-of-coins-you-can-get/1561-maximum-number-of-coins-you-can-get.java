@@ -3,8 +3,7 @@ class Solution {
         Arrays.sort(piles);
         int count=0;
         int sum=0;
-        int me=piles.length/3;
-        for(int i=piles.length-2;count<me;i-=2,count++){
+        for(int i=piles.length-2;count<piles.length/3;i-=2,count++){
             sum+=piles[i];
         }
         return sum;
