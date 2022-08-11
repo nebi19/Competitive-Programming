@@ -1,30 +1,34 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<Integer> st=new Stack<>();
-        for(int j=0;j<tokens.length;j++){
-            String i=tokens[j];
-            if(i.equals("+")||i.equals("-")||i.equals("*")||i.equals("/")){
-                
-                if(i.equals("+"))st.push(st.pop()+st.pop());
-                
-                if(i.equals("*"))st.push(st.pop()*st.pop());
-                
-                if(i.equals("-")){
-                    int a=st.pop();
-                    st.push(st.pop()-a);
-                            }
-                if(i.equals("/")){
-                    int a=st.pop();
-                    st.push(st.pop()/a);
-                }
-
-
-
-            }else{
-                st.push(Integer.parseInt(i));
+          Stack<Integer> stack = new Stack<Integer>();
+        int res = 0, x, y;
+        
+        for(int i = 0; i < tokens.length; ++i) {
+             if(tokens[i].equals("+") || tokens[i].equals("-") || tokens[i].equals("*") || tokens[i].equals("/")) {
+                 y = stack.pop();
+                 x = stack.pop();
+                 switch(tokens[i]) {
+                     case "+":
+                         res = x + y;
+                         break;
+                    case "-":
+                         res = x - y;
+                         break;
+                    case "*":
+                         res = x * y;
+                         break;
+                    default:
+                         res = x / y;
+                         break;
+                 }
+                 stack.push(res);
+             }
+            else{
+                stack.push(Integer.parseInt(tokens[i]));
             }
+            
         }
-        return st.peek();
+        return stack.peek();
                            
         
     }
