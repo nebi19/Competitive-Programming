@@ -1,80 +1,89 @@
 class MyCircularDeque {
-    int[] deque;
     int size;
+    int[] deQueue;
+    int front;
     int rear;
-    int front=0;
-    int maxSize;
 
     public MyCircularDeque(int k) {
-        deque=new int[k];
-        maxSize=k;   
-        rear=k-1;
+        size=k;
+        deQueue=new int[k];
+        front=-1;
+        rear=-1;
+        
     }
     
     public boolean insertFront(int value) {
-          if (isFull()) {
-            return false;
-        }
-        front = (maxSize + front - 1) % maxSize;
-        deque[front] = value;
-        size++;
+        if(isFull()) return false;
+        if(isEmpty()){front=0;
+                      rear=0;
+                     }
+        else if(front==0){front=size-1;}
+        else{front-=1;}
+          deQueue[front]=value;
+    
         return true;
         
     }
     
     public boolean insertLast(int value) {
-         if (isFull()) {
-            return false;
+       if(isFull()) return false;
+        if(isEmpty()){
+            front=0;
+            rear=0;
         }
-        rear = (rear + 1) % maxSize;
-        deque[rear] = value;
-        size++;
+        else if(rear==size-1){rear=0;}
+        else{rear+=1;}
+         deQueue[rear]=value;
         return true;
-        
     }
     
     public boolean deleteFront() {
-         if (isEmpty()) {
-            return false;
+        if(front==-1) return false;
+        if(front==rear){
+            front=-1;
+            rear=-1;
+        }else{
+            front=(front+1)%size;
         }
-        front = (front + 1) % maxSize;
-        size--;
         return true;
         
     }
     
     public boolean deleteLast() {
-           if (isEmpty()) {
-            return false;
+        if(rear==-1) return false;
+        if(rear==0&&front!=0){
+            rear=size-1;
+        }else if(rear==front){
+            rear=-1;
+            front=-1;
+        }else{
+            rear-=1;
         }
-        rear = (maxSize + rear - 1) % maxSize;
-        size--;
         return true;
+        
+        
     }
     
     public int getFront() {
-        if(isEmpty()){
-            return -1;
-        }
-        return deque[front];
+        if(front==-1) return -1;
+        return deQueue[front];
         
     }
     
     public int getRear() {
-        if(isEmpty()){
-            return -1;
-        }
-        return deque[rear];
+        if(rear==-1) return -1;
+        return deQueue[rear];
         
     }
     
     public boolean isEmpty() {
-        return size==0;
-        
+        if(front==-1||rear==-1) return true;
+        return false;
     }
     
     public boolean isFull() {
-        return size==maxSize;
+        if(((rear+1)%size)==front) return true;
+        return false;
         
     }
 }
