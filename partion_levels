@@ -1,0 +1,25 @@
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+               List<Integer> res = new LinkedList<>();
+
+        char[] arr = S.toCharArray();
+        int n = arr.length;
+        if (n == 0) return res;
+
+        //record the char last index
+        int[] t = new int[26];
+        for (int i = 0; i < n; i++) {
+            t[arr[i] - 'a'] = i;
+        }
+        int s = 0, e = 0;
+        for (int i = 0; i < n; i++) {
+            e = Math.max(t[arr[i] - 'a'], e);
+            if (i == e) {
+                res.add(e - s + 1);
+                s = e + 1;
+            }
+        }
+        return res;
+        
+    }
+}
