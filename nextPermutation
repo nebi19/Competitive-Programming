@@ -1,0 +1,46 @@
+class Solution {
+   public void nextPermutation(int[] nums) {
+        //loop from back, find the first decrease number
+        //situation 1: if no decrease number, first pointer will be at -1;
+        //situation 2: else, keep the first pointer at the decrease num(numA), and loop from back again to find the first num that larger than the numA, swap.
+        //reverse the array from first pointer + 1 to the end. for situation 1, change it from largest to smallest permutation
+        
+        //corner case
+        if (nums == null || nums.length <= 1) {
+            return;
+        }
+        int pointer = nums.length - 2;
+        while (pointer >= 0) {
+            if (nums[pointer] >= nums[pointer + 1]) {
+                pointer--;
+            } else {
+                //found the decrease num
+                int pointer2 = nums.length - 1;
+                while (pointer2 > pointer) {
+                    if (nums[pointer2] > nums[pointer]) {
+                        swap(nums, pointer2, pointer);
+                        break;
+                    }
+                    pointer2--;
+                }
+                break;
+            } 
+        }
+        reverse(nums, pointer + 1);
+    }
+    
+    private void swap(int[] nums, int left, int right) {
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
+    }
+    
+    private void reverse(int[] nums, int l) {
+        int r = nums.length - 1;
+        while (l < r) {
+            swap(nums, l, r);
+            l++;
+            r--;
+        }
+    }
+}
